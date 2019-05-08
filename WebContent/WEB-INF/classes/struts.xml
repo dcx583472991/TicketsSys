@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="default" extends="struts-default">
+	
+		<!-- 定义用户自定义拦截器 -->
+		<interceptors>
+			<interceptor name="logInterceptor" class="interceptor.BookInterceptor"/>
+		</interceptors>
+		
+	
+		<action name="loginAction" class="action.LogAction" method="login">
+			<result name="success">/Book.jsp</result>
+			<result name="input">/log.jsp</result>
+		</action> 
+		
+		<action name="regLoginAction" class="action.RegLoginAction" method="regist">
+			<result name="success">/page/registSuccess.jsp</result>
+			<result name="input">/log.jsp</result>
+		</action> 
+		
+		<action name="bookAction" class="action.BookAction">
+			<!-- 使用引用登录拦截器 -->
+			<interceptor-ref name="logInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
+			<result name="success">/page/ShowTickets.jsp</result>
+			<result name="input">/Book.jsp</result>
+			<result name="login">log.jsp</result>
+		</action> 
+		
+		<action name="resetPwdAction" class="action.ResetPwdAction">
+			<result name="success">/resetPwdSuccess.jsp</result>
+			<result name="input">/resetPwd.jsp</result>
+		</action>
+		
+<!-- 		<action name="DeleteBookInfoAction" class="action.DeleteBookInfoAction"> -->
+<!-- 			<result name="success">/page/ShowTickets.jsp</result> -->
+<!-- 			<result name="input">index.jsp</result> -->
+<!-- 		</action> -->
+
+		<action name="DeleteBookInfoAction" class="action.DeleteBookInfoAction">
+			<result type="redirectAction">
+				<param name="actionName">QuerryAllByUserNameAction</param>
+			</result>
+		</action>
+		
+		<action name="QuerryActionById" class="action.QuerryActionById">
+			<result name="success">/page/BookInfoDetail.jsp</result>
+			<result name="input">/page/ShowTickets.jsp</result>
+		</action>
+		
+<!-- 		<action name="UpdataBookInfoAction" class="action.UpdataBookInfoAction"> -->
+<!-- 			<result name="success">/page/ShowTickets.jsp</result> -->
+<!-- 			<result name="input">/page/BookInfoDetail.jsp</result> -->
+<!-- 		</action> -->
+		
+		<action name="UpdataBookInfoAction" class="action.UpdataBookInfoAction">
+			<result type="redirectAction">
+				<param name="actionName">QuerryAllByUserNameAction</param>
+			</result>
+		</action>
+		
+		<action name="QuerryAllByUserNameAction" class="action.QuerryAllByUserNameAction">
+			<result name="success">/page/ShowTickets.jsp</result>
+			<result name="input">index.jsp</result>
+		</action>
+		
+		<action name="QueryInPageAction" class="action.QueryInPageAction">
+			<result name="success">/page/ShowTickets.jsp</result>
+			<result name="input">/page/ShowTickets.jsp</result>
+		</action>
+		
+		<action name="LogOutAction" class="action.LogOutAction">
+			<result name="success">/log.jsp</result>
+		</action>
+		
+	</package>
+</struts>

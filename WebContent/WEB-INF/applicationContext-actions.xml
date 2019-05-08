@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+						
+						
+	<!-- loginAction的bean -->
+	<bean id="loginAction" class="action.LogAction">
+		<property name="ud"><!-- 调用set方法给ud赋值，实例化 -->
+			<ref bean="userDao"/>
+		</property>
+	</bean>	
+	
+	<!-- bookAction的bean -->
+	<bean id="bookAction" class="action.BookAction">
+		<property name="bd">
+			<ref bean="bookDao"/>
+		</property>
+	</bean>
+	
+	<!-- regLoginAction的bean -->
+	<bean id="regLoginAction" class="action.RegLoginAction">
+		<property name="ud">
+			<ref bean="userDao"/>
+		</property>
+	</bean>
+	
+	<!-- querryAllByUserNameAction的bean -->
+	<bean id="querryAllByUserNameAction" class="action.QuerryAllByUserNameAction">
+		<property name="bd">
+			<ref bean="bookDao"/>
+		</property>
+	</bean>
+	
+	<!-- querryActionById的bean -->
+	<bean id="querryActionById" class="action.QuerryActionById">
+		<property name="bd">
+			<ref bean="bookDao"/>
+		</property>
+	</bean>
+	
+	<!-- queryInPageAction的bean -->
+	<bean id="queryInPageAction" class="action.QueryInPageAction">
+		<property name="bd">
+			<ref bean="bookDao"/>
+		</property>
+	</bean>
+	
+	<!-- updataBookInfoAction的bean -->
+	<bean id="updataBookInfoAction" class="action.UpdataBookInfoAction">
+		<property name="bd">
+			<ref bean="bookDao"/>
+		</property>
+	</bean>
+	
+	<!-- deleteBookInfoAction的bean -->
+	<bean id="deleteBookInfoAction" class="action.DeleteBookInfoAction">
+		<property name="bd">
+			<ref bean="bookDao"/>
+		</property>
+	</bean>
+	
+	<!-- resetPwdAction的bean -->
+	<bean id="resetPwdAction" class="action.ResetPwdAction">
+		<property name="ud">
+			<ref bean="userDao"/>
+		</property>
+	</bean>
+	
+</beans>
